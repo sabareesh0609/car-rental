@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Toyota Innova Crysta",
+    "seats": 7,
+    "fuel": "Diesel",
+    "price": 4200,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=1200&q=80",
+      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80"
+    ],
+    "description": "Spacious MPV for family trips and airport runs. Comfortable seating, strong AC, and ample luggage space."
+  },
+  {
+    "id": 2,
+    "name": "Honda City",
+    "seats": 5,
+    "fuel": "Petrol",
+    "price": 2800,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=80"
+    ],
+    "description": "Reliable sedan with smooth CVT, great mileage, and a premium cabin for city and highway drives."
+  },
+  {
+    "id": 3,
+    "name": "Maruti Swift",
+    "seats": 5,
+    "fuel": "Petrol",
+    "price": 1650,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=1200&q=80"
+    ],
+    "description": "Compact hatch that is easy to park and fun to drive—ideal for solo travelers and short city hops."
+  },
+  {
+    "id": 4,
+    "name": "Hyundai Creta",
+    "seats": 5,
+    "fuel": "Diesel",
+    "price": 3200,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1200&q=80",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80"
+    ],
+    "description": "Popular compact SUV with high ground clearance, touchscreen infotainment, and a commanding view of the road."
+  },
+  {
+    "id": 5,
+    "name": "Ford EcoSport",
+    "seats": 5,
+    "fuel": "Petrol",
+    "price": 2400,
+    "available": false,
+    "images": [
+      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=80"
+    ],
+    "description": "Small SUV with a punchy engine and tight footprint—currently booked for the selected season."
+  },
+  {
+    "id": 6,
+    "name": "Mahindra XUV700",
+    "seats": 7,
+    "fuel": "Diesel",
+    "price": 5500,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=1200&q=80",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80"
+    ],
+    "description": "Feature-packed seven-seater with ADAS options, panoramic sunroof, and serious road presence."
+  },
+  {
+    "id": 7,
+    "name": "Tata Nexon EV",
+    "seats": 5,
+    "fuel": "Electric",
+    "price": 3800,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80"
+    ],
+    "description": "Zero tailpipe emissions, instant torque, and lower running costs—perfect for eco-conscious urban renters."
+  },
+  {
+    "id": 8,
+    "name": "BMW 3 Series",
+    "seats": 5,
+    "fuel": "Petrol",
+    "price": 7800,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=1200&q=80"
+    ],
+    "description": "Executive sedan for business travel—refined ride, sporty handling, and an upscale interior."
+  },
+  {
+    "id": 9,
+    "name": "Maruti Ertiga",
+    "seats": 7,
+    "fuel": "Petrol",
+    "price": 2900,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1200&q=80"
+    ],
+    "description": "Affordable three-row MPV with flexible seating—great value for group outings on a budget."
+  },
+  {
+    "id": 10,
+    "name": "Toyota Camry Hybrid",
+    "seats": 5,
+    "fuel": "Hybrid",
+    "price": 6200,
+    "available": true,
+    "images": [
+      "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?w=1200&q=80",
+      "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200&q=80"
+    ],
+    "description": "Quiet hybrid powertrain, limousine-like rear seat comfort, and excellent fuel economy on long drives."
+  }
+]
