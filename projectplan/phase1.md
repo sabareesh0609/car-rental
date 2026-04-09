@@ -1,53 +1,48 @@
+# Phase 1 — Project setup and layout
+
 Create a Next.js 14 project using the App Router.
 
-Tech stack:
+## Tech stack
 
-- Next.js
+- Next.js 14
 - TailwindCSS
 - shadcn/ui
 - TypeScript
 
-Project name: car-rental-mock
+Project folder: app root (`car-rental`).
 
-Requirements:
+## Requirements
 
-1. Create a basic layout with:
+1. Basic layout with Navbar, main content area, Footer.
 
-- Navbar
-- Main content area
-- Footer
+2. Navbar:
 
-2. Navbar should contain:
+   - Logo text "DriveEase"
+   - Links: Home, Cars, Login (extend in later phases for logged-in state)
+   - Mobile: hamburger menu using shadcn `Sheet`
 
-- Logo text "DriveEase"
-- Home
-- Cars
-- Login
+3. TailwindCSS for styling; responsive design.
 
-3. Use TailwindCSS for styling.
+4. Install and configure shadcn/ui (Button, Sheet for mobile nav).
 
-4. Install and configure shadcn/ui.
+5. Folder structure:
 
-5. Create the following folder structure:
+```
+app/
+  layout.tsx
+  page.tsx
+  login/page.tsx
+  cars/page.tsx
+components/
+  navbar.tsx
+  footer.tsx
+  mobile-nav.tsx
+```
 
-app
-layout.tsx
-page.tsx
-login/page.tsx
-cars/page.tsx
+6. Home page:
 
-components
-navbar.tsx
-footer.tsx
+   - Hero section
+   - Title: "Find Your Perfect Rental Car"
+   - Button: "Browse Cars" (links to `/cars`)
 
-6. Home page should contain:
-
-- Hero section
-- Title "Find Your Perfect Rental Car"
-- Button "Browse Cars"
-
-7. Use responsive Tailwind design.
-
-8. Use shadcn Button component.
-
-Do not implement backend yet. Only UI and layout.
+7. Do not implement backend or real auth yet — UI and layout only.

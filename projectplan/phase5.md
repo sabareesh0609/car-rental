@@ -1,59 +1,28 @@
-Extend the project with booking functionality and admin panel.
+# Phase 5 — Admin panel
 
-Create file:
+## Routes
 
-data/bookings.json
+- `app/admin/layout.tsx` — sidebar: Dashboard, Cars, Bookings
+- `app/admin/dashboard/page.tsx` — stats: total cars, total bookings, available cars (or similar)
+- `app/admin/cars/page.tsx` — CRUD UI for cars (persist to `cars.json`)
+- `app/admin/bookings/page.tsx` — read-only or status edit for all bookings
 
-Structure:
+## Cars management
 
-[
-{
-"id": 1,
-"userId": 1,
-"carId": 2,
-"pickupDate": "2026-04-01",
-"returnDate": "2026-04-03",
-"totalPrice": 4000
-}
-]
+- List cars in shadcn `Table` with Edit / Delete
+- Add car: dialog or page with form
+- Edit: pre-filled form
+- Delete: `AlertDialog` confirmation
+- All mutations via Server Actions writing `cars.json`
 
-User Features:
+## Bookings management
 
-1. On car details page add booking form:
+- Table of all bookings with user + car info (resolve ids from `users.json` / `cars.json` as needed for display)
 
-- pickup date
-- return date
+## Access control
 
-2. Calculate:
-   total days
-   total price
+- Middleware (or layout check): only `role === "admin"` for `/admin/*`
 
-3. Save booking to bookings.json.
+## UI
 
-Admin Panel:
-
-Create routes:
-
-app/admin/login
-app/admin/dashboard
-app/admin/cars
-
-Admin Features:
-
-- view all cars
-- add car
-- edit car
-- delete car
-
-Admin edits should update cars.json.
-
-UI:
-
-Use shadcn Table for admin list.
-
-Add basic admin dashboard stats:
-
-- total cars
-- total bookings.
-
-Protect admin routes so only role=admin can access them.
+- `Table`, `Dialog`, `Form`, `Input`, `Select`, `Button`, `AlertDialog`

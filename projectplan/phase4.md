@@ -1,59 +1,47 @@
-Add authentication using mock JSON data.
+# Phase 4 — Booking system (user)
 
-Create file:
+## Data
 
-data/users.json
+Create `data/bookings.json`:
 
-Example data:
-
+```json
 [
-{
-"id": 1,
-"email": "[user@gmail.com](mailto:user@gmail.com)",
-"password": "123456",
-"role": "user"
-},
-{
-"id": 2,
-"email": "[admin@gmail.com](mailto:admin@gmail.com)",
-"password": "admin123",
-"role": "admin"
-}
+  {
+    "id": 1,
+    "userId": 1,
+    "carId": 2,
+    "pickupDate": "2026-04-01",
+    "returnDate": "2026-04-03",
+    "totalPrice": 7000,
+    "status": "confirmed"
+  }
 ]
+```
 
-Tasks:
+## Library
 
-1. Create login page:
+- `lib/bookings.ts` — list bookings by user, create booking (used by Server Actions)
 
-app/login/page.tsx
+Persist new bookings by appending to `bookings.json` (file writes on server — acceptable for POC).
 
-Fields:
+## Car detail / booking
 
-- email
-- password
+On `app/cars/[id]/page.tsx` (or a dedicated `app/cars/[id]/book/page.tsx`):
 
-2. On login submit:
+- If not logged in: prompt to login or redirect via middleware
+- Form: pickup date, return date (shadcn `Calendar` / date picker or native `input type="date"` for simplicity)
+- Compute rental days and `totalPrice = days * car.price`
+- Submit via Server Action → append to `bookings.json`
+- Success: toast + redirect to `/my-bookings`
 
-- read users.json
-- compare email + password
+## My bookings
 
-3. If login success:
-   store user data in localStorage.
+`app/my-bookings/page.tsx`:
 
-4. Redirect:
-   user → homepage
-   admin → /admin/dashboard
+- Table or card list of current user’s bookings
+- Columns: car name (join from cars), pickup, return, total, status
+- Protected by middleware
 
-5. Create utility:
+## shadcn
 
-lib/auth.ts
-
-Functions:
-login()
-logout()
-getCurrentUser()
-
-6. Protect pages:
-   If user not logged in redirect to login.
-
-Use shadcn Input and Button components.
+- `Table`, `Badge`, toasts (`Sonner` or `Toast`)

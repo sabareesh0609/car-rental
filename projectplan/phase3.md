@@ -1,39 +1,42 @@
-Extend the car listing system.
+# Phase 3 — Authentication (mock JSON)
 
-Create dynamic car details page.
+Mock login with role-based redirects and protected routes. Prefer **cookies + React Context** over `localStorage` so auth works with Next.js App Router and middleware.
 
-Tasks:
+## Data
 
-1. Create dynamic route:
+Create `data/users.json`:
 
-app/cars/[id]/page.tsx
+```json
+[
+  { "id": 1, "email": "user@gmail.com", "password": "123456", "role": "user", "name": "Demo User" },
+  { "id": 2, "email": "admin@gmail.com", "password": "admin123", "role": "admin", "name": "Admin" }
+]
+```
 
-2. When user clicks "View Details" on CarCard,
-   navigate to:
+(Adjust fields as needed; do not use markdown mailto links inside JSON.)
 
-/cars/{id}
+## Auth layer
 
-3. Fetch car details from cars.json using id.
+- `lib/auth.ts` — server-safe helpers: validate credentials against `users.json`, set/clear session cookie, read current user from cookie
+- `components/providers/auth-provider.tsx` (or `context/auth-context.tsx`) — client context mirroring session for UI (navbar)
+- `middleware.ts` — protect routes:
+  - Require login for: booking flow, `/my-bookings`, `/admin/*`
+  - `/admin/*` — only `role === "admin"`
+  - Redirect unauthenticated users to `/login` with optional `callbackUrl`
 
-4. Display the following:
+## Login page
 
-Car image gallery
-Car name
-Seats
-Fuel type
-Price per day
-Description
+`app/login/page.tsx`:
 
-5. Add a "Book Now" button.
+- Email, password (`Input`, `Label`, `Button`)
+- Server Action or route handler: verify user, set HTTP-only (or signed) cookie with user id + role (POC — not production-grade security)
+- On success: redirect `user` → `/`, `admin` → `/admin/dashboard`
+- On failure: show error (toast or inline)
 
-6. Use shadcn components:
+## Navbar
 
-- Card
-- Button
-- Separator
+- Logged in: show name, Logout, link to My Bookings (Phase 4), hide duplicate admin login route if using single `/login`
 
-7. Create responsive layout:
-   Left side: car images
-   Right side: car information
+## Notes
 
-Do not implement booking yet.
+- Single `/login` for both user and admin (original plan mentioned `app/admin/login`; consolidated to one login for simplicity unless you split later).

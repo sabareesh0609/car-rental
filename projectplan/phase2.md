@@ -1,55 +1,43 @@
-Extend the existing Next.js project.
+# Phase 2 — Car listing, filters, and detail page
 
-Add mock JSON data for cars.
+Extend the Next.js project with mock car data, listing, search/filter, and car detail.
 
-Create a folder:
+## Data
 
-data/cars.json
+Create `data/cars.json` with 8–10 mock cars. Each item includes at least:
 
-Example structure:
+- `id`, `name`, `seats`, `fuel`, `price` (per day), `available`, `images` (paths or URLs), `description`
 
-[
-{
-"id": 1,
-"name": "Toyota Innova",
-"seats": 7,
-"fuel": "Diesel",
-"price": 3500,
-"available": true,
-"images": ["/cars/innova1.jpg"],
-"description": "Comfortable family SUV"
-}
-]
+Use placeholder images where needed (e.g. `/placeholder-car.jpg` or public assets).
 
-Tasks:
+## Utilities
 
-1. Create a utility function:
+- `lib/data.ts` — read cars from JSON; helpers to get by id, filter by name/fuel/seats/price range (or implement filter logic in the page).
 
-lib/readJson.ts
+## Components
 
-that reads JSON files.
+- `components/car-card.tsx` — image, name, seats, fuel, price/day, "View Details" → `/cars/[id]`
+- Use shadcn `Card`, `Badge` where helpful
 
-2. Create a CarCard component:
+## Pages
 
-components/car-card.tsx
+1. **`app/cars/page.tsx`**
 
-Card must display:
+   - Load cars from `cars.json`
+   - Responsive grid of `CarCard`
+   - Search by car name (`Input`)
+   - Filters: fuel type, seats, price range (`Select` or similar)
+   - Empty state when no matches
 
-- Car image
-- Car name
-- Seats
-- Fuel
-- Price per day
-- "View Details" button
+2. **`app/cars/[id]/page.tsx`**
 
-3. Update cars/page.tsx:
+   - Resolve car by id; `notFound()` if missing
+   - Layout: images left (or top on mobile), info right
+   - Show name, seats, fuel, price/day, description
+   - "Book Now" button — in Phase 2 can link to login or be disabled until Phase 4 implements booking
 
-- Read cars.json
-- Display all cars in a grid layout
-- Use Tailwind grid
+## shadcn
 
-4. Make UI modern using shadcn Card component.
+- `Card`, `Button`, `Separator`, `Input`, `Select`, `Badge`
 
-5. Use placeholder images if needed.
-
-This phase should only display cars from JSON.
+This phase is read-only mock data (no writes to JSON).
