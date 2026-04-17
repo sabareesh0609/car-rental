@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { buttonVariants } from "@/components/ui/button";
 import { getCarById } from "@/lib/data";
+import { getSessionUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 
@@ -27,9 +28,14 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function CarDetailPage({ params }: Props) {
+export default async function CarDetailPage({ params }: Props) {
   const car = getCarById(params.id);
   if (!car) notFound();
+
+  const session = await getSessionUser();
+  const loginCallback = `/login?callbackUrl=${encodeURIComponent(`/cars/${params.id}`)}`;
+  const bookHref =
+    session != null ? "/my-bookings" : loginCallback;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -88,7 +94,7 @@ export default function CarDetailPage({ params }: Props) {
 
           <div className="mt-auto pt-10">
             <Link
-              href="/login"
+              href={bookHref}
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "w-full justify-center sm:w-auto",
@@ -99,8 +105,9 @@ export default function CarDetailPage({ params }: Props) {
               Book Now
             </Link>
             <p className="mt-3 text-xs text-muted-foreground">
-              Booking flow opens in Phase 4. For now this sends you to the login
-              page (Phase 3).
+              {session
+                ? "Booking flow opens in Phase 4. For now this link goes to My bookings."
+                : "Sign in to continue. After login you will return to this car."}
             </p>
           </div>
         </div>

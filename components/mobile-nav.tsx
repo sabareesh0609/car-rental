@@ -12,10 +12,17 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 
 export type NavItem = { href: string; label: string };
 
-export function MobileNav({ items }: { items: NavItem[] }) {
+export function MobileNav({
+  items,
+  footer,
+}: {
+  items: NavItem[];
+  footer?: ReactNode;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -45,6 +52,9 @@ export function MobileNav({ items }: { items: NavItem[] }) {
             </Link>
           ))}
         </nav>
+        {footer ? (
+          <div className="border-t border-border px-4 py-3">{footer}</div>
+        ) : null}
       </SheetContent>
     </Sheet>
   );

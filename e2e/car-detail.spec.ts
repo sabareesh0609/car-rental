@@ -18,7 +18,10 @@ test.describe("Car detail page (/cars/[id])", () => {
     const book = page.getByRole("link", { name: "Book Now" });
     await expect(book).toBeVisible();
     await expect(book).not.toHaveAttribute("aria-disabled", "true");
-    await expect(book).toHaveAttribute("href", "/login");
+    await expect(book).toHaveAttribute(
+      "href",
+      "/login?callbackUrl=%2Fcars%2F1"
+    );
   });
 
   test("disables Book Now when car is unavailable", async ({ page }) => {
