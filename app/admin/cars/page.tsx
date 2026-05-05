@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createCarAction, updateCarAction } from "@/app/actions/admin";
+import { AdminMutationToast } from "@/components/admin/admin-mutation-toast";
 import { DeleteCarButton } from "@/components/admin/delete-car-button";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -184,22 +185,7 @@ export default async function AdminCarsPage({
         </div>
         <Badge variant="outline">{cars.length} cars</Badge>
       </div>
-
-      {searchParams?.error ? (
-        <div className="mt-6 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          {searchParams.error}
-        </div>
-      ) : null}
-
-      {searchParams?.created || searchParams?.updated || searchParams?.deleted ? (
-        <div className="mt-6 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-700">
-          {searchParams.created
-            ? "Car created."
-            : searchParams.updated
-              ? "Car updated."
-              : "Car deleted."}
-        </div>
-      ) : null}
+      <AdminMutationToast />
 
       <div className="mt-8 grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
         <Card>

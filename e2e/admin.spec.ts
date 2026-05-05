@@ -53,11 +53,13 @@ test.describe("Admin panel (Phase 5)", () => {
     await page.getByLabel("Fuel").fill("Hybrid");
     await page.getByLabel("Seats").fill("4");
     await page.getByLabel("Daily price (INR)").fill("4100");
-    await page.getByLabel("Image URLs").fill("https://example.com/admin-car.jpg");
+    await page.getByLabel("Image URLs").fill(
+      "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1200&q=80"
+    );
     await page.getByLabel("Description").fill("Created from the admin Playwright test.");
     await page.getByRole("button", { name: "Add car" }).click();
 
-    await expect(page).toHaveURL(/\/admin\/cars\?created=1$/);
+    await expect(page).toHaveURL(/\/admin\/cars$/);
     await expect(page.getByText("Car created.")).toBeVisible();
 
     const createdRow = page.getByRole("row").filter({ hasText: createdName });
@@ -70,7 +72,7 @@ test.describe("Admin panel (Phase 5)", () => {
     await page.getByLabel("Daily price (INR)").fill("4500");
     await page.getByRole("button", { name: "Save changes" }).click();
 
-    await expect(page).toHaveURL(/\/admin\/cars\?updated=\d+$/);
+    await expect(page).toHaveURL(/\/admin\/cars$/);
     await expect(page.getByText("Car updated.")).toBeVisible();
 
     const updatedRow = page.getByRole("row").filter({ hasText: updatedName });
@@ -80,7 +82,7 @@ test.describe("Admin panel (Phase 5)", () => {
     page.once("dialog", (dialog) => dialog.accept());
     await updatedRow.getByRole("button", { name: "Delete" }).click();
 
-    await expect(page).toHaveURL(/\/admin\/cars\?deleted=1$/);
+    await expect(page).toHaveURL(/\/admin\/cars$/);
     await expect(page.getByText("Car deleted.")).toBeVisible();
     await expect(page.getByRole("row").filter({ hasText: updatedName })).toHaveCount(0);
   });
@@ -95,7 +97,7 @@ test.describe("Admin panel (Phase 5)", () => {
     await statusSelect.selectOption("completed");
     await bookingRow.getByRole("button", { name: "Save" }).click();
 
-    await expect(page).toHaveURL(/\/admin\/bookings\?updated=1$/);
+    await expect(page).toHaveURL(/\/admin\/bookings(?:\?updated=1)?$/);
     await expect(page.getByText("Booking status updated.")).toBeVisible();
     await expect(page.getByRole("row").filter({ hasText: "#1" })).toContainText(
       "completed"
@@ -104,6 +106,6 @@ test.describe("Admin panel (Phase 5)", () => {
     const resetRow = page.getByRole("row").filter({ hasText: "#1" });
     await resetRow.getByLabel("Status for booking 1").selectOption("confirmed");
     await resetRow.getByRole("button", { name: "Save" }).click();
-    await expect(page).toHaveURL(/\/admin\/bookings\?updated=1$/);
+    await expect(page).toHaveURL(/\/admin\/bookings(?:\?updated=1)?$/);
   });
 });

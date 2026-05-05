@@ -6,6 +6,15 @@
     "pickupDate": "2026-04-01",
     "returnDate": "2026-04-03",
     "totalPrice": 8400,
-    "status": "confirmed"
+    "status": "completed"
+  },
+  {
+    "userId": 1,
+    "carId": 3,
+    "pickupDate": "2026-05-19",
+    "returnDate": "2026-05-21",
+    "totalPrice": 4950,
+    "status": "confirmed",
+    "id": 2
   }
 ]

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/card";
 import { computeBookingTotal } from "@/lib/booking-math";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 function isNextRedirectError(error: unknown): boolean {
   return (
@@ -64,10 +65,14 @@ export function CarBookingForm({
     setPending(true);
     try {
       const result = await createBookingAction(new FormData(e.currentTarget));
-      if (result?.error) setError(result.error);
+      if (result?.error) {
+        setError(result.error);
+        toast.error(result.error);
+      }
     } catch (err) {
       if (isNextRedirectError(err)) return;
       setError("Could not complete booking. Please try again.");
+      toast.error("Could not complete booking. Please try again.");
     } finally {
       setPending(false);
     }

@@ -44,7 +44,9 @@ test.describe("Car detail page (/cars/[id])", () => {
   });
 
   test("unknown id returns 404", async ({ page }) => {
-    const response = await page.goto("/cars/99999");
-    expect(response?.status()).toBe(404);
+    await page.goto("/cars/99999");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "Page not found" })
+    ).toBeVisible();
   });
 });

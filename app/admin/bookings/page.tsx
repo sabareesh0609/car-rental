@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { updateBookingStatusAction } from "@/app/actions/admin";
+import { AdminMutationToast } from "@/components/admin/admin-mutation-toast";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -26,14 +27,7 @@ function formatInr(n: number) {
   }).format(n);
 }
 
-export default async function AdminBookingsPage({
-  searchParams,
-}: {
-  searchParams?: {
-    error?: string;
-    updated?: string;
-  };
-}) {
+export default async function AdminBookingsPage() {
   await requireAdminUser();
   const bookings = getAllBookingsDetailed();
 
@@ -48,18 +42,7 @@ export default async function AdminBookingsPage({
         </div>
         <Badge variant="outline">{bookings.length} bookings</Badge>
       </div>
-
-      {searchParams?.error ? (
-        <div className="mt-6 rounded-lg border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          {searchParams.error}
-        </div>
-      ) : null}
-
-      {searchParams?.updated ? (
-        <div className="mt-6 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-700">
-          Booking status updated.
-        </div>
-      ) : null}
+      <AdminMutationToast />
 
       <Card className="mt-8">
         <CardHeader>

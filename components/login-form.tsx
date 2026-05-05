@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 function isNextRedirectError(error: unknown): boolean {
   return (
@@ -35,10 +36,12 @@ export function LoginForm({ callbackUrl }: Props) {
       const result = await loginAction(new FormData(form));
       if (result?.error) {
         setError(result.error);
+        toast.error(result.error);
       }
     } catch (err) {
       if (isNextRedirectError(err)) return;
       setError("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setPending(false);
     }

@@ -16,6 +16,11 @@ function safeCallbackUrl(raw: string | null | undefined): string | null {
   return t;
 }
 
+function withQuery(path: string, key: string, value: string): string {
+  const sep = path.includes("?") ? "&" : "?";
+  return `${path}${sep}${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+}
+
 export async function loginAction(formData: FormData): Promise<{
   error: string;
 } | void> {
@@ -39,15 +44,14 @@ export async function loginAction(formData: FormData): Promise<{
   });
 
   if (user.role === "admin") {
-    redirect("/admin/dashboard");
+    redirect(withQuery("/admin/dashboard", "loggedIn", "1"));
   }
 
-  const dest =
-    callback && callback !== "/login" ? callback : "/";
-  redirect(dest);
+  const dest = callback && callback !== "/login" ? callback : "/";
+  redirect(withQuery(dest, "loggedIn", "1"));
 }
 
 export async function logoutAction(): Promise<void> {
   cookies().delete(SESSION_COOKIE_NAME);
-  redirect("/");
+  redirect("/?loggedOut=1");
 }

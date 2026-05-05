@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DriveEase Car Rental (POC)
 
-## Getting Started
+DriveEase is a mock car-rental web app built with Next.js App Router. It is a
+POC focused on product flows (catalog, auth, bookings, admin) using JSON files
+as the data source instead of a production database.
 
-First, run the development server:
+## Scope of this POC
+
+- Browse cars and view car details
+- Filter catalog by name, fuel, seats, and max price
+- Mock login for user/admin roles using signed HTTP-only session cookie
+- Create bookings and view my bookings
+- Admin panel for dashboard stats, cars CRUD, and booking status updates
+
+Data persistence is file-based (`data/*.json`) and intended only for local/demo
+usage.
+
+## Prerequisites
+
+- Node.js 18+ (Node.js 20 recommended)
+- npm
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Mock credentials
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- User: `user@gmail.com` / `123456`
+- Admin: `admin@gmail.com` / `admin123`
 
-## Learn More
+## Useful scripts
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run test
+npm run build
+npm run test:e2e
+```
