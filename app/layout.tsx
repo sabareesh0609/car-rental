@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { AuthProvider } from "@/components/providers/auth-provider";
+import { SonnerProvider } from "@/components/providers/sonner-provider";
 import { getSessionUser } from "@/lib/auth";
 import "./globals.css";
 
@@ -37,6 +38,7 @@ export default async function RootLayout({
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <SonnerProvider />
         </AuthProvider>
       </body>
     </html>

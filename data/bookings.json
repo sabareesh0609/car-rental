@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "carId": 2,
+    "pickupDate": "2026-04-01",
+    "returnDate": "2026-04-03",
+    "totalPrice": 8400,
+    "status": "confirmed"
+  },
+  {
+    "userId": 1,
+    "carId": 3,
+    "pickupDate": "2026-05-19",
+    "returnDate": "2026-05-21",
+    "totalPrice": 4950,
+    "status": "confirmed",
+    "id": 2
+  },
+  {
+    "userId": 1,
+    "carId": 3,
+    "pickupDate": "2026-05-19",
+    "returnDate": "2026-05-21",
+    "totalPrice": 4950,
+    "status": "confirmed",
+    "id": 3
+  },
+  {
+    "userId": 1,
+    "carId": 3,
+    "pickupDate": "2026-05-19",
+    "returnDate": "2026-05-21",
+    "totalPrice": 4950,
+    "status": "confirmed",
+    "id": 4
+  },
+  {
+    "userId": 1,
+    "carId": 1,
+    "pickupDate": "2026-05-06",
+    "returnDate": "2026-05-08",
+    "totalPrice": 12600,
+    "status": "confirmed",
+    "id": 5
+  }
+]

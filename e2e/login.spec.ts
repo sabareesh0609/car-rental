@@ -29,11 +29,11 @@ test.describe("Login page (/login)", () => {
   });
 
   test("logs in as user and reaches callback URL", async ({ page }) => {
-    await page.goto("/login?callbackUrl=%2Fcars%2F1");
+    await page.goto("/login?callbackUrl=%2Fcars%2F1%2Fbook");
     await page.getByLabel("Email").fill("user@gmail.com");
     await page.getByLabel("Password").fill("123456");
     await page.getByRole("button", { name: "Sign in" }).click();
-    await expect(page).toHaveURL(/\/cars\/1$/);
+    await expect(page).toHaveURL(/\/cars\/1\/book$/);
   });
 
   test("logs in as admin and lands on admin dashboard", async ({ page }) => {

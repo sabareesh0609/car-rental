@@ -33,9 +33,9 @@ export default async function CarDetailPage({ params }: Props) {
   if (!car) notFound();
 
   const session = await getSessionUser();
-  const loginCallback = `/login?callbackUrl=${encodeURIComponent(`/cars/${params.id}`)}`;
-  const bookHref =
-    session != null ? "/my-bookings" : loginCallback;
+  const bookPath = `/cars/${params.id}/book`;
+  const loginCallback = `/login?callbackUrl=${encodeURIComponent(bookPath)}`;
+  const bookHref = session != null ? bookPath : loginCallback;
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -106,8 +106,8 @@ export default async function CarDetailPage({ params }: Props) {
             </Link>
             <p className="mt-3 text-xs text-muted-foreground">
               {session
-                ? "Booking flow opens in Phase 4. For now this link goes to My bookings."
-                : "Sign in to continue. After login you will return to this car."}
+                ? "Choose pickup and return dates on the next step."
+                : "Sign in to continue. After login you will open the booking form for this car."}
             </p>
           </div>
         </div>

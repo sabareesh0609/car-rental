@@ -20,7 +20,7 @@ test.describe("Car detail page (/cars/[id])", () => {
     await expect(book).not.toHaveAttribute("aria-disabled", "true");
     await expect(book).toHaveAttribute(
       "href",
-      "/login?callbackUrl=%2Fcars%2F1"
+      "/login?callbackUrl=%2Fcars%2F1%2Fbook"
     );
   });
 

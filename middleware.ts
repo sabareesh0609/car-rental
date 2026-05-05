@@ -4,11 +4,16 @@ import { SESSION_COOKIE_NAME } from "@/lib/auth-constants";
 import { verifySessionToken } from "@/lib/session-token";
 import { getAuthSecret } from "@/lib/session-secret";
 
+function isCarBookPath(pathname: string): boolean {
+  return /^\/cars\/[^/]+\/book$/.test(pathname);
+}
+
 function needsAuthCheck(pathname: string): boolean {
   return (
     pathname.startsWith("/login") ||
     pathname.startsWith("/my-bookings") ||
-    pathname.startsWith("/admin")
+    pathname.startsWith("/admin") ||
+    isCarBookPath(pathname)
   );
 }
 
@@ -51,6 +56,16 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/my-bookings")) {
+    if (!session) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.searchParams.set("callbackUrl", pathname);
+      return NextResponse.redirect(url);
+    }
+    return NextResponse.next();
+  }
+
+  if (isCarBookPath(pathname)) {
     if (!session) {
       const url = request.nextUrl.clone();
       url.pathname = "/login";

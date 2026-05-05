@@ -14,4 +14,11 @@ test.describe("Route guards (Phase 3)", () => {
       /\/login\?callbackUrl=%2Fadmin%2Fdashboard/
     );
   });
+
+  test("redirects guests from car book route to login", async ({ page }) => {
+    await page.goto("/cars/1/book");
+    await expect(page).toHaveURL(
+      /\/login\?callbackUrl=%2Fcars%2F1%2Fbook$/
+    );
+  });
 });
