@@ -2,10 +2,11 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./e2e",
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // The app persists to shared JSON files during E2E, so keep runs serial.
+  workers: 1,
   reporter: [
     process.env.CI ? ["github"] : ["list"],
     ["html", { open: "never", outputFolder: "playwright-report" }],
